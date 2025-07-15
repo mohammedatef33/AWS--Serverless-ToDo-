@@ -11,7 +11,15 @@
 - [Solution Overview](#solution-overview)
 - [Architecture Diagram](#architecture-diagram)
 - [AWS Services Used](#aws-services-used)
+- [API Endpoints](#api-endpoints)
+- [DynamoDB Schema](#dynamodb-schema)
+- [Learning Outcomes](#learning-outcomes)
 - [Customizing the Solution](#customizing-the-solution)
+  - [Prerequisites](#prerequisites)
+  - [1. Clone the Repository](#1-clone-the-repository)
+  - [2. Install Dependencies](#2-install-dependencies)
+  - [3. Deploy the App](#3-deploy-the-app)
+- [Testing with Postman](#testing-with-postman)
 - [Operational Metrics](#operational-metrics)
 - [External Contributors](#external-contributors)
 - [License](#license)
@@ -28,7 +36,7 @@ The application follows best practices for event-driven architecture using AWS L
 
 ## 🧱 Architecture Diagram
 
-![Architecture Diagram](AWS%20Architecture%20Diagram.png)
+![Architecture Diagram](./AWS%20Architecture%20Diagram.png)
 
 ### Architecture Summary
 
@@ -45,11 +53,44 @@ The application follows best practices for event-driven architecture using AWS L
 | Service             | Purpose                                      |
 |--------------------|----------------------------------------------|
 | **Amazon API Gateway** | Exposes REST endpoints to users.          |
-| **AWS Lambda**         | Executes logic without server management. |
-| **Amazon DynamoDB**    | Stores to-do list items.                  |
-| **Amazon CloudWatch**  | Logs and monitors system activity.        |
-| **AWS IAM**            | Manages secure access and permissions.    |
-     |
+| **AWS Lambda**        | Executes logic without server management. |
+| **Amazon DynamoDB**   | Stores to-do list items.                  |
+| **Amazon CloudWatch** | Logs and monitors system activity.        |
+| **AWS IAM**           | Manages secure access and permissions.    |
+
+---
+
+## 📡 API Endpoints
+
+| Method | Endpoint         | Description               |
+|--------|------------------|---------------------------|
+| POST   | /todos           | Create a new task         |
+| GET    | /todos           | Retrieve all tasks        |
+| PUT    | /todos/{id}      | Update task by ID         |
+| DELETE | /todos/{id}      | Delete task by ID         |
+
+🔄 All endpoints are routed via API Gateway and handled by individual Lambda functions.
+
+---
+
+## 📦 DynamoDB Schema
+
+| Field      | Type    | Description                      |
+|------------|---------|----------------------------------|
+| `id`       | String  | Primary key (Partition key)       |
+| `title`    | String  | Task description                  |
+| `status`   | Boolean | Task completion status (true/false) |
+
+---
+
+## 🎯 Learning Outcomes
+
+- Designed a serverless RESTful API architecture.
+- Implemented Lambda functions for CRUD operations.
+- Used DynamoDB with secure IAM role access.
+- Deployed using Serverless Framework.
+- Documented architecture with diagram and schema.
+- Tested endpoints via Postman.
 
 ---
 
@@ -61,55 +102,51 @@ This section helps developers deploy or modify the project in their own AWS envi
 
 - AWS CLI configured with your account:  
   👉 `aws configure`
-- Node.js v18 or later
+- Node.js v18+  
 - Serverless Framework installed globally:
 
 ```bash
 npm install -g serverless
 ```
 
-### 📥 1. Clone the Repository
+### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/mohammedatef33/AWS--Serverless-ToDo-.git
 cd AWS--Serverless-ToDo-
 ```
 
-### 📦 2. Install Dependencies
+### 2. Install Dependencies
 
 ```bash
 npm install
 ```
 
-### 🚀 3. Deploy the App
-
-Make sure you're authenticated and then run:
+### 3. Deploy the App
 
 ```bash
 serverless deploy
 ```
 
-> This will deploy all Lambda functions, the API Gateway, and the DynamoDB table.
-
-Once deployed, note the API Gateway endpoint returned in the terminal.
 
 ---
 
 ## 📊 Operational Metrics
 
-The application uses **Amazon CloudWatch** to monitor and log:
-
-- Function executions
-- Errors and throttles
-- API Gateway access logs
-
-Logs are useful for debugging and tracking performance.
+- CloudWatch monitors all Lambda executions.
+- Logs for each API call can be viewed in the AWS CloudWatch console.
 
 ---
 
-## 🌍 External Contributors
+## 🤝 External Contributors
 
-This project is customized and maintained solely by Mohammed Atef based on an open-source template.
+- Thanks to the open-source community and original contributors for inspiration and base structure.
+
+---
+
+## 📜 License
+
+This project is licensed under the MIT License.template.
 
 ---
 
