@@ -12,10 +12,6 @@
 - [Architecture Diagram](#architecture-diagram)
 - [AWS Services Used](#aws-services-used)
 - [Customizing the Solution](#customizing-the-solution)
-  - [Prerequisites](#prerequisites)
-  - [1. Clone the Repository](#1-clone-the-repository)
-  - [2. Install Dependencies](#2-install-dependencies)a
-  - [3. Deploy the App](#3-deploy-the-app)
 - [Operational Metrics](#operational-metrics)
 - [External Contributors](#external-contributors)
 - [License](#license)
@@ -32,9 +28,7 @@ The application follows best practices for event-driven architecture using AWS L
 
 ## 🧱 Architecture Diagram
 
-AWS Architecture Diagram.png
-
-![Architecture Diagram](./architecture.png)
+![Architecture Diagram](AWS%20Architecture%20Diagram.png)
 
 ### Architecture Summary
 
@@ -48,13 +42,14 @@ AWS Architecture Diagram.png
 
 ## 🧰 AWS Services Used
 
-| Service         | Purpose                                      |
-|----------------|----------------------------------------------|
+| Service             | Purpose                                      |
+|--------------------|----------------------------------------------|
 | **Amazon API Gateway** | Exposes REST endpoints to users.          |
-| **AWS Lambda**        | Executes logic without server management. |
-| **Amazon DynamoDB**   | Stores to-do list items.                  |
-| **Amazon CloudWatch** | Logs and monitors system activity.        |
-| **AWS IAM**           | Manages secure access and permissions.    |
+| **AWS Lambda**         | Executes logic without server management. |
+| **Amazon DynamoDB**    | Stores to-do list items.                  |
+| **Amazon CloudWatch**  | Logs and monitors system activity.        |
+| **AWS IAM**            | Manages secure access and permissions.    |
+| **Amazon S3**          | Hosts the static frontend UI.             |
 
 ---
 
@@ -66,8 +61,58 @@ This section helps developers deploy or modify the project in their own AWS envi
 
 - AWS CLI configured with your account:  
   👉 `aws configure`
-- Node.js v18+  
+- Node.js v18 or later
 - Serverless Framework installed globally:
 
 ```bash
 npm install -g serverless
+```
+
+### 📥 1. Clone the Repository
+
+```bash
+git clone https://github.com/mohammedatef33/AWS--Serverless-ToDo-.git
+cd AWS--Serverless-ToDo-
+```
+
+### 📦 2. Install Dependencies
+
+```bash
+npm install
+```
+
+### 🚀 3. Deploy the App
+
+Make sure you're authenticated and then run:
+
+```bash
+serverless deploy
+```
+
+> This will deploy all Lambda functions, the API Gateway, and the DynamoDB table.
+
+Once deployed, note the API Gateway endpoint returned in the terminal.
+
+---
+
+## 📊 Operational Metrics
+
+The application uses **Amazon CloudWatch** to monitor and log:
+
+- Function executions
+- Errors and throttles
+- API Gateway access logs
+
+Logs are useful for debugging and tracking performance.
+
+---
+
+## 🌍 External Contributors
+
+This project is customized and maintained solely by Mohammed Atef based on an open-source template.
+
+---
+
+## 📄 License
+
+This project is licensed under the [Apache 2.0 License](LICENSE).
