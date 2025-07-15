@@ -32,7 +32,7 @@ The application follows best practices for event-driven architecture using AWS L
 
 ## 🧱 Architecture Diagram
 
-AWS Architecture diagram.drawio
+AWS Architecture Diagram.png
 
 ![Architecture Diagram](./architecture.png)
 
