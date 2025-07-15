@@ -49,7 +49,7 @@ The application follows best practices for event-driven architecture using AWS L
 | **Amazon DynamoDB**    | Stores to-do list items.                  |
 | **Amazon CloudWatch**  | Logs and monitors system activity.        |
 | **AWS IAM**            | Manages secure access and permissions.    |
-| **Amazon S3**          | Hosts the static frontend UI.             |
+     |
 
 ---
 
